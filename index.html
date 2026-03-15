@@ -474,7 +474,7 @@ function sendEmail() {
     from_name: '주식회사 아이야',
   };
 
-  fetch('https://api.emailjs.com/api/v1/email/send', {
+  fetch('https://api.emailjs.com/api/v1.0/email/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -512,7 +512,7 @@ async function sendAll() {
   for (const e of employees) {
     if (!e.email) { fail++; continue; }
     try {
-      const res = await fetch('https://api.emailjs.com/api/v1/email/send', {
+      const res = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
