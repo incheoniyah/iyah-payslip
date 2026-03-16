@@ -471,11 +471,32 @@ function sendEmail() {
   sendBtn.textContent = '전송 중...';
 
   const params = {
-    to_email: to,
-    to_name:  name,
-    subject:  subject,
-    message:  body,
-    from_name: '주식회사 아이야',
+    to_email:     to,
+    to_name:      name,
+    subject:      subject,
+    message:      body,
+    from_name:    '주식회사 아이야',
+    name:         currentEmp.name,
+    pay_date:     fileMeta.payDate || '',
+    subject_txt:  currentEmp.subject,
+    account:      `${currentEmp.bank} ${currentEmp.account} (${currentEmp.account_name})`,
+    class_period: fileMeta.classPeriod || '',
+    class_count:  currentEmp.class_count || '-',
+    school:       currentEmp.school,
+    inst_type:    currentEmp.type,
+    headcount:    currentEmp.headcount ? currentEmp.headcount + '명' : '-',
+    fee_per:      fmt(currentEmp.fee_per),
+    fee_total:    fmt(currentEmp.fee_total),
+    other_earn:   fmt(currentEmp.other_earn),
+    income_tax:   fmt(currentEmp.income_tax),
+    resident_tax: fmt(currentEmp.resident_tax),
+    special_emp:  fmt(currentEmp.special_emp),
+    industrial:   fmt(currentEmp.industrial),
+    other_deduct: fmt(currentEmp.other_deduct),
+    total_deduct: fmt(currentEmp.total_deduct),
+    net_pay:      fmt(currentEmp.net_pay),
+    memo:         currentEmp.memo || '',
+    issue_date:   new Date().toLocaleDateString('ko-KR'),
   };
 
   emailjs.send(EMAILJS_SERVICE, EMAILJS_TEMPLATE, params)
